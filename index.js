@@ -219,8 +219,5 @@ async function main() {
   console.error('\n💡 Quick Start: Use "scan_project" to analyze your entire project automatically!');
 }
 
-// Robust ESM entrypoint check that works with npx shims and symlinks
-const thisFilePath = fileURLToPath(import.meta.url);
-if (process.argv[1] === thisFilePath) {
-  main().catch(console.error);
-}
+// Always start the MCP server when this module is executed
+main().catch(console.error);
