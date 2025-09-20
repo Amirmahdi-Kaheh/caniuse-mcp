@@ -4,6 +4,7 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
 import { handleScanProject, handleCheckCompatibility, handleGetFixes, handleGenerateConfigs, handleManageConfig } from './src/enhanced-tools.js';
+import { fileURLToPath } from 'url';
 
 const server = new McpServer({
   name: 'caniuse-mcp-server',
@@ -218,6 +219,8 @@ async function main() {
   console.error('\n💡 Quick Start: Use "scan_project" to analyze your entire project automatically!');
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+// Robust ESM entrypoint check that works with npx shims and symlinks
+const thisFilePath = fileURLToPath(import.meta.url);
+if (process.argv[1] === thisFilePath) {
   main().catch(console.error);
 }
