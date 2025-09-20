@@ -1,5 +1,5 @@
 {
-  "name": "caniuse-mcp",
+  "name": "@mahdiar/caniuse-mcp",
   "version": "1.0.0",
   "description": "Advanced MCP server for CSS/JS feature compatibility checking with configurable browser targets, polyfill support, and smart project scanning",
   "main": "index.js",
@@ -37,10 +37,7 @@
     "claude",
     "ai-tools"
   ],
-  "author": {
-    "name": "Mahdiar Kaheh",
-    "email": "mahdiar.dev@gmail.com"
-  },
+  "author": "Mahdiar Kaheh <mahdiar.dev@gmail.com>",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -52,5 +49,17 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "preferGlobal": true
+  "preferGlobal": true,
+  "directories": {
+    "example": "examples"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amirmahdi-Kaheh/caniuse-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Amirmahdi-Kaheh/caniuse-mcp/issues"
+  },
+  "homepage": "https://github.com/Amirmahdi-Kaheh/caniuse-mcp#readme"
 }
