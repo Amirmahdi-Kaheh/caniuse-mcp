@@ -2,7 +2,7 @@
 
 A powerful Model Context Protocol (MCP) server that provides intelligent CSS/JS feature compatibility checking with configurable browser targets, polyfill support, and smart project scanning. Perfect for web developers using AI-powered tools like Cursor, Claude, and other MCP-compatible clients.
 
-[![npm version](https://badge.fury.io/js/caniuse-mcp.svg)](https://www.npmjs.com/package/caniuse-mcp)
+[![npm version](https://badge.fury.io/js/caniuse-mcp.svg)](https://www.npmjs.com/package/@mahdiar/caniuse-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## ✨ Key Features

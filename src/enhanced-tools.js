@@ -12,7 +12,7 @@ export const enhancedTools = [
   {
     name: "scan_project",
     description: "Analyze project files to detect CSS/JS features and check compatibility across browser targets",
-    inputSchema: {
+    input_schema: {
       type: "object",
       properties: {
         projectPath: {
@@ -44,7 +44,7 @@ export const enhancedTools = [
   {
     name: "check_compatibility", 
     description: "Check specific features or files against multiple browser targets with detailed analysis",
-    inputSchema: {
+    input_schema: {
       type: "object",
       properties: {
         features: {
@@ -70,7 +70,7 @@ export const enhancedTools = [
   {
     name: "get_fixes",
     description: "Get actionable remediation steps, polyfills, and alternatives for unsupported features",
-    inputSchema: {
+    input_schema: {
       type: "object",
       properties: {
         features: {
@@ -101,7 +101,7 @@ export const enhancedTools = [
   {
     name: "generate_configs",
     description: "Generate complete build configurations, CI/CD setups, and workflow files for browser compatibility",
-    inputSchema: {
+    input_schema: {
       type: "object",
       properties: {
         configType: {
@@ -133,7 +133,7 @@ export const enhancedTools = [
   {
     name: "manage_config",
     description: "Configure browser baselines, polyfills, and feature overrides for more accurate compatibility checking",
-    inputSchema: {
+    input_schema: {
       type: "object",
       properties: {
         action: {
@@ -379,30 +379,6 @@ function handleGenerateConfigs(args) {
   };
 }
 
-// Legacy support - map old tools to new ones for backward compatibility
-export function mapLegacyTool(name, args) {
-  const mappings = {
-    'check_feature_support': () => handleCheckCompatibility({ features: [args.feature] }),
-    'check_multiple_features': () => handleCheckCompatibility({ features: args.features }),
-    'suggest_alternatives': () => handleGetFixes({ features: [args.feature] }),
-    'check_react_compatibility': () => handleCheckCompatibility({ 
-      features: args.features || ['jsx', 'es6-class', 'arrow-functions', 'destructuring']
-    }),
-    'check_css_modules_compatibility': () => handleCheckCompatibility({
-      features: args.cssFeatures || ['css-variables', 'css-grid', 'flexbox']
-    }),
-    'generate_css_fallbacks': () => handleGetFixes({ features: [args.cssProperty] }),
-    'get_build_config': () => handleGenerateConfigs({ configType: args.configType }),
-    'generate_component_template': () => handleGenerateConfigs({ configType: 'all', projectType: 'react' })
-  };
-
-  const handler = mappings[name];
-  if (!handler) {
-    throw new Error(`Legacy tool ${name} not supported. Use the new enhanced tools instead.`);
-  }
-
-  return handler();
-}
 
 async function handleManageConfig(args) {
   const { action = 'view', baseline, polyfill, feature, override, targetName, browser, version } = args;

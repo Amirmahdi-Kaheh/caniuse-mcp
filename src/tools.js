@@ -8,7 +8,7 @@ export const tools = [
   {
     name: "check_feature_support",
     description: "Check if a CSS or JavaScript feature is supported in Chrome 37",
-    inputSchema: {
+    input_schema: {
       type: "object",
       properties: {
         feature: {
@@ -22,7 +22,7 @@ export const tools = [
   {
     name: "check_multiple_features",
     description: "Check support for multiple CSS/JS features in Chrome 37 at once",
-    inputSchema: {
+    input_schema: {
       type: "object",
       properties: {
         features: {
@@ -39,7 +39,7 @@ export const tools = [
   {
     name: "suggest_alternatives",
     description: "Get alternative solutions for features not supported in Chrome 37",
-    inputSchema: {
+    input_schema: {
       type: "object",
       properties: {
         feature: {
@@ -53,7 +53,7 @@ export const tools = [
   {
     name: "check_react_compatibility",
     description: "Check compatibility of React-specific features and patterns for Chrome 37",
-    inputSchema: {
+    input_schema: {
       type: "object",
       properties: {
         features: {
@@ -70,7 +70,7 @@ export const tools = [
   {
     name: "check_css_modules_compatibility",
     description: "Check CSS features commonly used with CSS modules for Chrome 37 compatibility",
-    inputSchema: {
+    input_schema: {
       type: "object",
       properties: {
         cssFeatures: {
@@ -87,7 +87,7 @@ export const tools = [
   {
     name: "generate_css_fallbacks",
     description: "Generate CSS with fallbacks for Chrome 37 compatibility",
-    inputSchema: {
+    input_schema: {
       type: "object",
       properties: {
         cssProperty: {
@@ -105,7 +105,7 @@ export const tools = [
   {
     name: "get_build_config",
     description: "Get recommended build configuration for React + CSS modules targeting Chrome 37",
-    inputSchema: {
+    input_schema: {
       type: "object",
       properties: {
         configType: {
@@ -120,7 +120,7 @@ export const tools = [
   {
     name: "generate_component_template",
     description: "Generate React component template with CSS modules compatible with Chrome 37",
-    inputSchema: {
+    input_schema: {
       type: "object", 
       properties: {
         componentName: {
