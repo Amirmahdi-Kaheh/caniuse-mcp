@@ -12,7 +12,7 @@ export const enhancedTools = [
   {
     name: "scan_project",
     description: "Analyze project files to detect CSS/JS features and check compatibility across browser targets",
-    input_schema: {
+    inputSchema: {
       type: "object",
       properties: {
         projectPath: {
@@ -44,7 +44,7 @@ export const enhancedTools = [
   {
     name: "check_compatibility", 
     description: "Check specific features or files against multiple browser targets with detailed analysis",
-    input_schema: {
+    inputSchema: {
       type: "object",
       properties: {
         features: {
@@ -70,7 +70,7 @@ export const enhancedTools = [
   {
     name: "get_fixes",
     description: "Get actionable remediation steps, polyfills, and alternatives for unsupported features",
-    input_schema: {
+    inputSchema: {
       type: "object",
       properties: {
         features: {
@@ -101,7 +101,7 @@ export const enhancedTools = [
   {
     name: "generate_configs",
     description: "Generate complete build configurations, CI/CD setups, and workflow files for browser compatibility",
-    input_schema: {
+    inputSchema: {
       type: "object",
       properties: {
         configType: {
@@ -133,7 +133,7 @@ export const enhancedTools = [
   {
     name: "manage_config",
     description: "Configure browser baselines, polyfills, and feature overrides for more accurate compatibility checking",
-    input_schema: {
+    inputSchema: {
       type: "object",
       properties: {
         action: {
@@ -207,7 +207,7 @@ export async function handleEnhancedTool(name, args) {
   }
 }
 
-async function handleScanProject(args) {
+export async function handleScanProject(args) {
   const {
     projectPath = '.',
     targets = ['chrome-37'],
@@ -251,7 +251,7 @@ async function handleScanProject(args) {
   };
 }
 
-async function handleCheckCompatibility(args) {
+export async function handleCheckCompatibility(args) {
   const { features, files, targets = ['chrome-37'] } = args;
 
   let featuresToCheck = features || [];
@@ -290,7 +290,7 @@ async function handleCheckCompatibility(args) {
   };
 }
 
-function handleGetFixes(args) {
+export function handleGetFixes(args) {
   const { features, priority = 'all', includeExamples = true, includeCommands = true } = args;
 
   if (!features || features.length === 0) {
@@ -321,7 +321,7 @@ function handleGetFixes(args) {
   };
 }
 
-function handleGenerateConfigs(args) {
+export function handleGenerateConfigs(args) {
   const {
     configType = 'all',
     target = 'chrome-37', 
@@ -380,7 +380,7 @@ function handleGenerateConfigs(args) {
 }
 
 
-async function handleManageConfig(args) {
+export async function handleManageConfig(args) {
   const { action = 'view', baseline, polyfill, feature, override, targetName, browser, version } = args;
 
   try {
