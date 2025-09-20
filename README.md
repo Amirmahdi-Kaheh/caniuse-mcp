@@ -19,32 +19,38 @@ A powerful Model Context Protocol (MCP) server that provides intelligent CSS/JS 
 
 ### Global Installation (Recommended)
 ```bash
-npm install -g caniuse-mcp
+npm install -g @mahdiar/caniuse-mcp
 ```
 
 ### Local Installation
 ```bash
-npm install caniuse-mcp
+npm install @mahdiar/caniuse-mcp
 ```
 
 ## 🔌 Setup for MCP Clients
 
-### Cursor IDE
+### Option 1: Global Installation (Recommended)
+First, install the package globally:
+```bash
+npm install -g @mahdiar/caniuse-mcp
+```
+
+#### Cursor IDE
 Add to your Cursor settings (`Cmd/Ctrl + ,` → MCP):
 
 ```json
 {
   "mcpServers": {
     "caniuse": {
-      "command": "npx",
-      "args": ["caniuse-mcp"],
+      "command": "caniuse-mcp",
+      "args": [],
       "env": {}
     }
   }
 }
 ```
 
-### Claude Desktop
+#### Claude Desktop
 Add to `claude_desktop_config.json`:
 
 ```json
@@ -59,10 +65,56 @@ Add to `claude_desktop_config.json`:
 }
 ```
 
-### Other MCP Clients
-For any MCP-compatible client, use the command:
+### Option 2: Using npx (Alternative)
+If global installation doesn't work, use npx:
+
+#### Cursor IDE
+```json
+{
+  "mcpServers": {
+    "caniuse": {
+      "command": "npx",
+      "args": ["@mahdiar/caniuse-mcp"],
+      "env": {}
+    }
+  }
+}
+```
+
+#### Claude Desktop
+```json
+{
+  "mcpServers": {
+    "caniuse": {
+      "command": "npx",
+      "args": ["@mahdiar/caniuse-mcp"],
+      "env": {}
+    }
+  }
+}
+```
+
+### Option 3: Direct Node.js Path
+If you have issues with command resolution:
+
+#### Find your global npm bin path:
 ```bash
-npx caniuse-mcp  # or just caniuse-mcp if installed globally
+npm config get prefix
+# On macOS/Linux, usually: /usr/local/bin or ~/.npm-global/bin
+# On Windows: C:\Users\[username]\AppData\Roaming\npm
+```
+
+#### Use full path in MCP configuration:
+```json
+{
+  "mcpServers": {
+    "caniuse": {
+      "command": "/usr/local/bin/caniuse-mcp",
+      "args": [],
+      "env": {}
+    }
+  }
+}
 ```
 
 ## ⚡ Quick Start
@@ -451,7 +503,7 @@ module.exports = {
 ```bash
 # .husky/pre-commit
 echo "🔍 Checking browser compatibility..."
-npx caniuse-mcp scan_project
+npx @mahdiar/caniuse-mcp scan_project
 ```
 
 ### CI/CD Pipeline
@@ -468,13 +520,99 @@ npx caniuse-mcp scan_project
 
 ### Common Issues
 
+#### "No tools found" Error in Cursor/Claude
+
+This is the most common issue. Try these solutions in order:
+
+**1. Verify Global Installation**
+```bash
+# Check if package is installed globally
+npm list -g @mahdiar/caniuse-mcp
+
+# If not installed, install globally
+npm install -g @mahdiar/caniuse-mcp
+
+# Test the command directly
+caniuse-mcp
+# Should show: "🚀 Enhanced CanIUse MCP Server running on stdio"
+```
+
+**2. Check Your PATH**
+```bash
+# Verify npm global bin is in your PATH
+echo $PATH | grep $(npm config get prefix)/bin
+
+# If not found, add to your shell profile (~/.bashrc, ~/.zshrc, etc.)
+export PATH="$(npm config get prefix)/bin:$PATH"
+
+# Then restart your terminal and MCP client
+```
+
+**3. Try Different Installation Methods**
+```bash
+# Method 1: Clean reinstall
+npm uninstall -g @mahdiar/caniuse-mcp
+npm install -g @mahdiar/caniuse-mcp
+
+# Method 2: Install without global flag and use npx
+npm install @mahdiar/caniuse-mcp
+# Then use "npx @mahdiar/caniuse-mcp" in MCP config
+
+# Method 3: Install via different package manager
+# Using yarn
+yarn global add @mahdiar/caniuse-mcp
+
+# Using pnpm
+pnpm add -g @mahdiar/caniuse-mcp
+```
+
+**4. Update MCP Configuration Format**
+Make sure your Cursor/Claude configuration uses the correct format:
+
+**❌ Incorrect:**
+```json
+{
+  "mcpServers": {
+    "caniuse": {
+      "command": "@mahdiar/caniuse-mcp"
+    }
+  }
+}
+```
+
+**✅ Correct:**
+```json
+{
+  "mcpServers": {
+    "caniuse": {
+      "command": "caniuse-mcp",
+      "args": [],
+      "env": {}
+    }
+  }
+}
+```
+
+**5. Test MCP Server Manually**
+```bash
+# Test if the server responds to MCP protocol
+echo '{"jsonrpc": "2.0", "id": 1, "method": "tools/list"}' | caniuse-mcp
+
+# Should return a JSON response with available tools
+```
+
+#### Other Common Issues
+
 **"Module not found" errors**
 ```bash
-# Make sure package is installed globally
-npm install -g caniuse-mcp
+# Make sure package is installed correctly
+npm install -g @mahdiar/caniuse-mcp
 
-# Or use npx for local installs
-npx caniuse-mcp
+# Clear npm cache if needed
+npm cache clean --force
+
+# Or use npx for one-time execution
+npx @mahdiar/caniuse-mcp
 ```
 
 **Configuration not loading**
@@ -482,7 +620,7 @@ npx caniuse-mcp
 # Check if config file exists and is valid JSON
 cat .caniuse-config.json | jq '.'
 
-# Reset to defaults
+# Reset to defaults if corrupted
 manage_config { "action": "reset" }
 ```
 
@@ -492,11 +630,49 @@ manage_config { "action": "reset" }
 manage_config { "action": "view" }
 
 // Check override is set
-manage_config { 
+manage_config {
   "action": "set_override",
   "feature": "css-variables",
   "override": "supported"
 }
+```
+
+**Permission errors on macOS/Linux**
+```bash
+# Fix npm permissions
+sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}
+
+# Or reinstall npm with a node version manager
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+nvm install node
+```
+
+### Platform-Specific Issues
+
+#### macOS
+```bash
+# If using Homebrew node
+brew reinstall node
+
+# Check npm prefix
+npm config set prefix ~/.npm-global
+export PATH=~/.npm-global/bin:$PATH
+```
+
+#### Windows
+```bash
+# Run as Administrator and install globally
+npm install -g @mahdiar/caniuse-mcp
+
+# Add npm global path to system PATH
+# Usually: C:\Users\[username]\AppData\Roaming\npm
+```
+
+#### Linux
+```bash
+# Use node version manager to avoid permission issues
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+sudo apt-get install -y nodejs
 ```
 
 ### Debug Mode
@@ -506,9 +682,36 @@ export DEBUG="caniuse-mcp*"
 caniuse-mcp
 ```
 
+### Still Having Issues?
+
+1. **Check Node.js version**: Requires Node.js 18+
+   ```bash
+   node --version
+   ```
+
+2. **Verify npm configuration**:
+   ```bash
+   npm config list
+   npm doctor
+   ```
+
+3. **Try a clean environment**:
+   ```bash
+   # Create a test directory
+   mkdir test-caniuse && cd test-caniuse
+   npx @mahdiar/caniuse-mcp
+   ```
+
+4. **Report the issue**: If none of the above work, please open an issue at https://github.com/Amirmahdi-Kaheh/caniuse-mcp/issues with:
+   - Your operating system
+   - Node.js version (`node --version`)
+   - npm version (`npm --version`)
+   - Complete error message
+   - MCP client you're using (Cursor, Claude Desktop, etc.)
+
 ## 🔗 Links & Resources
 
-- **NPM Package**: https://www.npmjs.com/package/caniuse-mcp
+- **NPM Package**: https://www.npmjs.com/package/@mahdiar/caniuse-mcp
 - **Can I Use Database**: https://caniuse.com
 - **Model Context Protocol**: https://docs.anthropic.com/en/docs/build-with-claude/mcp
 - **Cursor IDE**: https://cursor.sh

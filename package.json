@@ -1,11 +1,15 @@
 {
   "name": "@mahdiar/caniuse-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Advanced MCP server for CSS/JS feature compatibility checking with configurable browser targets, polyfill support, and smart project scanning",
   "main": "index.js",
   "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
   "bin": {
-    "caniuse-mcp": "index.js"
+    "caniuse-mcp": "./index.js"
   },
   "files": [
     "index.js",
