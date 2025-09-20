@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$comment": "Basic CanIUse MCP Configuration Example",
+  "defaultBaseline": "chrome-50",
+  "customTargets": {
+    "chrome-57": {
+      "browser": "chrome",
+      "version": "57"
+    },
+    "chrome-60": {
+      "browser": "chrome", 
+      "version": "60"
+    }
+  },
+  "polyfills": [
+    "css-grid",
+    "flexbox"
+  ],
+  "overrides": {
+    "css-variables": "supported"
+  }
+}

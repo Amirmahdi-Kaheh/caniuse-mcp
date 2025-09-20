@@ -1,0 +1,48 @@
+{
+  "$comment": "Enterprise configuration with multiple browser support and extensive polyfills",
+  "defaultBaseline": "chrome-50",
+  "customTargets": {
+    "ie-11": {
+      "browser": "ie",
+      "version": "11"
+    },
+    "edge-legacy": {
+      "browser": "edge",
+      "version": "18"
+    },
+    "chrome-enterprise": {
+      "browser": "chrome",
+      "version": "50"
+    },
+    "firefox-esr": {
+      "browser": "firefox",
+      "version": "78"
+    }
+  },
+  "polyfills": [
+    "css-grid",
+    "css-variables",
+    "css-custom-properties",
+    "flexbox",
+    "promises",
+    "promise-allsettled",
+    "arrow-functions",
+    "const",
+    "let",
+    "object-assign",
+    "fetch"
+  ],
+  "overrides": {
+    "css-variables": "supported",
+    "css-grid": "supported",
+    "promise-allsettled": "supported",
+    "fetch": "supported"
+  },
+  "browserFallbacks": {
+    "chrome": ["37", "40", "45", "50"],
+    "firefox": ["60", "68", "78"],
+    "safari": ["10", "11", "12"],
+    "ie": ["11"],
+    "edge": ["16", "18"]
+  }
+}

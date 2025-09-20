@@ -1,0 +1,30 @@
+{
+  "$comment": "Configuration for Promise.allSettled polyfill support",
+  "defaultBaseline": "chrome-60",
+  "customTargets": {
+    "chrome-75": {
+      "browser": "chrome",
+      "version": "75"
+    },
+    "firefox-70": {
+      "browser": "firefox", 
+      "version": "70"
+    },
+    "safari-13": {
+      "browser": "safari",
+      "version": "13"
+    }
+  },
+  "polyfills": [
+    "promise-allsettled",
+    "promises"
+  ],
+  "overrides": {
+    "promise-allsettled": "supported"
+  },
+  "browserFallbacks": {
+    "chrome": ["60", "65", "70", "75"],
+    "firefox": ["60", "65", "70"],
+    "safari": ["11", "12", "13"]
+  }
+}

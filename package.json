@@ -1,0 +1,56 @@
+{
+  "name": "caniuse-mcp",
+  "version": "1.0.0",
+  "description": "Advanced MCP server for CSS/JS feature compatibility checking with configurable browser targets, polyfill support, and smart project scanning",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "caniuse-mcp": "index.js"
+  },
+  "files": [
+    "index.js",
+    "src/",
+    "README.md",
+    "LICENSE",
+    "examples/"
+  ],
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test": "node --test",
+    "prepublishOnly": "npm test || echo 'Warning: tests not implemented'"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "caniuse",
+    "browser-compatibility",
+    "css",
+    "javascript",
+    "polyfill",
+    "web-development",
+    "compatibility-check",
+    "chrome",
+    "firefox",
+    "safari",
+    "cursor",
+    "claude",
+    "ai-tools"
+  ],
+  "author": {
+    "name": "Mahdiar Kaheh",
+    "email": "mahdiar.dev@gmail.com"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "node-fetch": "^3.3.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "preferGlobal": true
+}

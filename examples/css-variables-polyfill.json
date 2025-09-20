@@ -1,0 +1,25 @@
+{
+  "$comment": "Configuration for CSS Variables polyfill support",
+  "defaultBaseline": "chrome-40",
+  "customTargets": {
+    "ie-11": {
+      "browser": "ie",
+      "version": "11"
+    },
+    "chrome-legacy": {
+      "browser": "chrome",
+      "version": "40"
+    }
+  },
+  "polyfills": [
+    "css-variables",
+    "css-custom-properties"
+  ],
+  "overrides": {
+    "css-variables": "supported"
+  },
+  "browserFallbacks": {
+    "chrome": ["40", "45", "50"],
+    "ie": ["11"]
+  }
+}
