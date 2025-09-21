@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 
 const server = new McpServer({
   name: 'caniuse-mcp-server',
-  version: '1.0.2'
+  version: '1.2.0'
 });
 
 // Register scan_project tool
