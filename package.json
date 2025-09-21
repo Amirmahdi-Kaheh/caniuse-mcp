@@ -1,5 +1,5 @@
 {
-  "name": "@mahdiar/caniuse-mcp",
+  "name": "caniuse-mcp-server",
   "version": "1.1.3",
   "description": "Advanced MCP server for CSS/JS feature compatibility checking with configurable browser targets, polyfill support, and smart project scanning",
   "main": "index.js",
@@ -9,7 +9,7 @@
     "./package.json": "./package.json"
   },
   "bin": {
-    "caniuse-mcp": "./index.js"
+    "caniuse-mcp-server": "./index.js"
   },
   "files": [
     "index.js",
@@ -61,10 +61,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Amirmahdi-Kaheh/caniuse-mcp.git"
+    "url": "git+https://github.com/Amirmahdi-Kaheh/caniuse-mcp-server.git"
   },
   "bugs": {
-    "url": "https://github.com/Amirmahdi-Kaheh/caniuse-mcp/issues"
+    "url": "https://github.com/Amirmahdi-Kaheh/caniuse-mcp-server/issues"
   },
-  "homepage": "https://github.com/Amirmahdi-Kaheh/caniuse-mcp#readme"
+  "homepage": "https://github.com/Amirmahdi-Kaheh/caniuse-mcp-server#readme"
 }
