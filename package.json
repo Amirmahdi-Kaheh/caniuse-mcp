@@ -61,10 +61,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Amirmahdi-Kaheh/caniuse-mcp-server.git"
+    "url": "git+https://github.com/Amirmahdi-Kaheh/caniuse-mcp.git"
   },
   "bugs": {
-    "url": "https://github.com/Amirmahdi-Kaheh/caniuse-mcp-server/issues"
+    "url": "https://github.com/Amirmahdi-Kaheh/caniuse-mcp/issues"
   },
-  "homepage": "https://github.com/Amirmahdi-Kaheh/caniuse-mcp-server#readme"
+  "homepage": "https://github.com/Amirmahdi-Kaheh/caniuse-mcp#readme"
 }

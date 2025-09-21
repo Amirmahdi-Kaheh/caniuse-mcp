@@ -702,7 +702,7 @@ caniuse-mcp-server
    npx caniuse-mcp-server
    ```
 
-4. **Report the issue**: If none of the above work, please open an issue at https://github.com/Amirmahdi-Kaheh/caniuse-mcp-server/issues with:
+4. **Report the issue**: If none of the above work, please open an issue at https://github.com/Amirmahdi-Kaheh/caniuse-mcp/issues with:
    - Your operating system
    - Node.js version (`node --version`)
    - npm version (`npm --version`)
